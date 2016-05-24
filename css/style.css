@@ -1,11 +1,10 @@
 BODY {
     font-family: Verdana, sans-serif;
-    background: url(/background.png) repeat-x top white;
     background-attachment: fixed;
 }
 
 #page {
-    margin: 0px;
+    margin: 0;
     width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -136,16 +135,15 @@ a.button {
 }
 
 #registerbox {
-    width: 400px;
+    width: 60%;
     height: 400px;
     background-color: #e3e8e4;
-    float: right;
-    padding: 5px;
+    padding-left: 40%;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 3px #c8d8bf solid;
-    margin-right: 0px;
+    margin-right: 0;
     margin-left: 15px;
 }
 

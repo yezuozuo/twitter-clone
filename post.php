@@ -7,7 +7,6 @@ if (!isLoggedIn() || !gt("status")) {
 }
 
 $r      = redisLink();
-//get next_post_id
 $postid = $r->incr("next_post_id");
 $status = str_replace("\n", " ", gt("status"));
 
@@ -18,14 +17,12 @@ $r->hmset(
     "time", time(),
     "body", $status);
 $followers   = $r->zrange("followers:" . $User['id'], 0, -1);
-$followers[] = $User['id']; /* Add the post to our own posts too */
+$followers[] = $User['id'];
 
 //LRANGE posts:1 0 -1
 foreach ($followers as $fid) {
     $r->lpush("posts:$fid", $postid);
 }
-# Push the post on the timeline, and trim the timeline to the
-# newest 1000 elements.
 //lrange timeline 0 -1
 $r->lpush("timeline", $postid);
 $r->ltrim("timeline", 0, 1000);

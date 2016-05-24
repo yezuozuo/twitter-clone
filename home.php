@@ -9,7 +9,7 @@
 ?>
 <div id="postform">
     <form method="POST" action="post.php">
-        <?= utf8entities($User['username']) ?>, what you are doing?
+        <?= utf8entities($User['username']) ?>,您正在做什么？
         <br>
         <table>
             <tr>
@@ -21,8 +21,8 @@
         </table>
     </form>
     <div id="homeinfobox">
-        <?= $r->zcard("followers:" . $User['id']) ?> followers<br>
-        <?= $r->zcard("following:" . $User['id']) ?> following<br>
+        <?= $r->zcard("followers:" . $User['id']) ?> 粉丝<br>
+        <?= $r->zcard("following:" . $User['id']) ?> 关注<br>
     </div>
 </div>
 <?php

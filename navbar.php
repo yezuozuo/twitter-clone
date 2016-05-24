@@ -1,7 +1,7 @@
 <div id="navbar">
-    <a href="index.php">home</a>
-    | <a href="timeline.php">timeline</a>
+    <a href="index.php">主页</a>
+    | <a href="timeline.php">时间线</a>
     <?php if (isLoggedIn()) { ?>
-        | <a href="logout.php">logout</a>
+        | <a href="logout.php">注销</a>
     <?php } ?>
 </div>

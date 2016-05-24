@@ -1,6 +1,10 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
 
+/**
+ * 获取随机数
+ * @return string
+ */
 function getrand() {
     $fd   = fopen("/dev/urandom", "r");
     $data = fread($fd, 16);
@@ -9,6 +13,10 @@ function getrand() {
     return md5($data);
 }
 
+/**
+ * 判断是否登录
+ * @return bool
+ */
 function isLoggedIn() {
     global $User, $_COOKIE;
 
@@ -32,6 +40,11 @@ function isLoggedIn() {
     return false;
 }
 
+/**
+ * 加载用户信息
+ * @param $userid
+ * @return bool
+ */
 function loadUserInfo($userid) {
     global $User;
 
@@ -43,6 +56,7 @@ function loadUserInfo($userid) {
 }
 
 /**
+ * 获取redis的连接
  * @return \Predis\Client
  */
 function redisLink() {
@@ -56,7 +70,11 @@ function redisLink() {
     return $r;
 }
 
-# Access to GET/POST/COOKIE parameters the easy way
+/**
+ * Access to GET/POST/COOKIE parameters the easy way
+ * @param $param
+ * @return bool
+ */
 function g($param) {
     global $_GET, $_POST, $_COOKIE;
 
@@ -73,6 +91,10 @@ function g($param) {
     return false;
 }
 
+/**
+ * @param $param
+ * @return bool|string
+ */
 function gt($param) {
     $val = g($param);
     if ($val === false) {
@@ -82,10 +104,17 @@ function gt($param) {
     return trim($val);
 }
 
+/**
+ * @param $s
+ * @return string
+ */
 function utf8entities($s) {
     return htmlentities($s, ENT_COMPAT, 'UTF-8');
 }
 
+/**
+ * @param $msg
+ */
 function goback($msg) {
     include("header.php");
     echo('<div id ="error">' . utf8entities($msg) . '<br>');
@@ -94,6 +123,10 @@ function goback($msg) {
     exit;
 }
 
+/**
+ * @param $t
+ * @return string
+ */
 function strElapsed($t) {
     $d = time() - $t;
     if ($d < 60) {
@@ -114,6 +147,10 @@ function strElapsed($t) {
     return "$d day" . ($d > 1 ? "s" : "");
 }
 
+/**
+ * @param $id
+ * @return bool
+ */
 function showPost($id) {
     $r    = redisLink();
     $post = $r->hgetall("post:$id");
@@ -132,6 +169,12 @@ function showPost($id) {
     return true;
 }
 
+/**
+ * @param $userid
+ * @param $start
+ * @param $count
+ * @return bool
+ */
 function showUserPosts($userid, $start, $count) {
     $r     = redisLink();
     $key   = ($userid == -1) ? "timeline" : "posts:$userid";
@@ -149,6 +192,12 @@ function showUserPosts($userid, $start, $count) {
     return count($posts) == $count + 1;
 }
 
+/**
+ * @param $username
+ * @param $userid
+ * @param $start
+ * @param $count
+ */
 function showUserPostsWithPagination($username, $userid, $start, $count) {
     global $_SERVER;
     $thispage = $_SERVER['PHP_SELF'];
