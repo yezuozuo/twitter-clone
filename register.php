@@ -1,5 +1,5 @@
 <?php
-include("retwis.php");
+include("core.php");
 
 if (!gt("username") || !gt("password") || !gt("password2")) {
     goback("Every field of the registration form is needed!");

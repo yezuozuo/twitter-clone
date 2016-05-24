@@ -1,5 +1,5 @@
 <?php
-include("retwis.php");
+include("core.php");
 include("header.php");
 ?>
 <h2>时间线</h2>

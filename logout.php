@@ -1,5 +1,5 @@
 <?php
-include("retwis.php");
+include("core.php");
 
 if (!isLoggedIn()) {
     header("Location: index.php");

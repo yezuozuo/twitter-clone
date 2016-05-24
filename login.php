@@ -1,5 +1,5 @@
 <?php
-include("retwis.php");
+include("core.php");
 
 if (!gt("username") || !gt("password")) {
     goback("You need to enter both username and password to login.");

@@ -1,5 +1,5 @@
 <?php
-include("retwis.php");
+include("core.php");
 
 $r = redisLink();
 if (!isLoggedIn() || !gt("uid") || gt("f") === false ||
