@@ -2,17 +2,17 @@
 include("core.php");
 
 if (!gt("username") || !gt("password") || !gt("password2")) {
-    goback("Every field of the registration form is needed!");
+    goback("请输入用户名和密码");
 }
 if (gt("password") != gt("password2")) {
-    goback("The two password fileds don't match!");
+    goback("密码不一致");
 }
 
 $username = gt("username");
 $password = gt("password");
 $r        = redisLink();
 if ($r->hget("users", $username)) {
-    goback("Sorry the selected username is already in use.");
+    goback("该用户名已经被使用");
 }
 
 $userid     = $r->incr("next_user_id");

@@ -2,7 +2,7 @@
 include("core.php");
 
 if (!gt("username") || !gt("password")) {
-    goback("You need to enter both username and password to login.");
+    goback("请输入用户名和密码");
 }
 
 $username = gt("username");
@@ -10,11 +10,11 @@ $password = gt("password");
 $r        = redisLink();
 $userid   = $r->hget("users", $username);
 if (!$userid) {
-    goback("Wrong username or password");
+    goback("用户名或密码错误");
 }
 $realpassword = $r->hget("user:$userid", "password");
 if ($realpassword != $password) {
-    goback("Wrong useranme or password");
+    goback("用户名或密码错误");
 }
 
 $authsecret = $r->hget("user:$userid", "auth");
